@@ -91,7 +91,7 @@ class SearchScreen extends StatelessWidget {
                                           width: 30,
                                           decoration: BoxDecoration(
                                             shape: BoxShape.circle,
-                                            color: Color(int.parse(data1)),
+                                            color: Color(data1),
                                           ),
                                         );
                                       })),

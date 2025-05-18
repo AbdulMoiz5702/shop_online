@@ -26,30 +26,19 @@ List<String>  sliderList2 = [
 ];
 
 List<String>  featuredCategoriesList = [
-  'Women Clothing',
-  'Men Clothing & Fashion',
-  'Kids & Toys',
+  'Antique Furniture',
+  'Traditional Pottery',
+  'Antique Jewelry',
 ];
 
 List<String>  featuredCategoriesList2 = [
-  'Sports',
-  'Automobile',
-  'Jewelery',
+  'Wall Decor & Frames',
+  'Old Coins & Stamps',
+  'Cultural Artifacts',
 ];
 
 
-List<String>  featuredCategoriesImages = [
-  imgS1,
-  imgS2,
-  imgS3,
-];
 
-
-List<String>  featuredCategoriesImages2 = [
-  imgS4,
-  imgS5,
-  imgS6,
-];
 
 List<String>  categoriesList = [
   'Antique Furniture',
@@ -74,6 +63,19 @@ List<String>  categoriesListImages = [
   imgFc7,
   imgFc8,
   imgFc9,
+];
+
+List<String>  featuredCategoriesImages = [
+  imgFc1,
+  imgFc3,
+  imgFc6,
+];
+
+
+List<String>  featuredCategoriesImages2 = [
+  imgFc8,
+  imgFc9,
+  imgFc7,
 ];
 
 
