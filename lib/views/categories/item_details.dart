@@ -1,14 +1,14 @@
 import 'package:emart_app/consts/colors.dart';
+import 'package:emart_app/consts/firebase_const.dart';
 import 'package:emart_app/controllers/product_controller.dart';
-import 'package:emart_app/views/chat_screen/chat_screen.dart';
 import 'package:emart_app/widgets_common/CustomButtom.dart';
 import 'package:emart_app/widgets_common/CustomSized.dart';
 import 'package:emart_app/widgets_common/text_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../consts/consts.dart';
+import '../chat_screens/messages.dart';
 
 class ItemDetailsScreen extends StatelessWidget {
   final String title;
@@ -85,7 +85,7 @@ class ItemDetailsScreen extends StatelessWidget {
             CustomSized(height: 0.01),
             VxRating(
               isSelectable: false,
-              value: double.parse(data['p_rating']),
+              value: data['p_rating'].isEmpty ? 0.0 : double.parse(data['p_rating']),
               onRatingUpdate: (value) {},
               normalColor: textfieldGrey,
               count: 5,
@@ -118,7 +118,7 @@ class ItemDetailsScreen extends StatelessWidget {
                     ),
                     IconButton(
                         onPressed: () {
-                          Get.to(()=> ChatScreen(name: data['p_seller']),transition: Transition.cupertino,arguments: [data['p_seller'],data['vendor_id']]);
+                          Get.to(()=> MessageScreen(receiverName: data['p_seller'],receiverId: data['vendor_id'],userId: currentUser!.uid,),transition: Transition.cupertino,);
 
                         },
                         icon: Icon(
@@ -167,8 +167,7 @@ class ItemDetailsScreen extends StatelessWidget {
                                     width: 30,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Color(
-                                          int.parse(data['p_colors'][index])),
+                                      color: Color(data['p_colors'][index]),
                                     ),
                                     child: Visibility(
                                         visible: index ==
@@ -293,7 +292,7 @@ class ItemDetailsScreen extends StatelessWidget {
                         imageLink: data['p_images'][0],
                         sellerName: data['p_seller'],
                         vendorId: data['vendor_id'],
-                        color: data['p_colors'][itemDetailController.colorIndex.value],
+                        color: data['p_colors'][itemDetailController.colorIndex.value].toString(),
                         quantity: itemDetailController.quantity.value.toString(),
                         totalPrice: itemDetailController.totalPrice.value.toString(),
                         context: context);

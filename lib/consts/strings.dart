@@ -52,15 +52,15 @@ List<String>  featuredCategoriesImages2 = [
 ];
 
 List<String>  categoriesList = [
-  'Women Clothing',
-  'Men Clothing & Fashion',
-  'Computer and Accessories',
-  'Automobile',
-  'Kids & Toys',
-  'Sports',
-  'Jewelery',
-  'Cellphone & Tab',
-  'Furniture',
+  'Antique Furniture',
+  'Vintage Art & Paintings',
+  'Traditional Pottery',
+  'Historical Books & Manuscripts',
+  'Classic Fashion & Textiles',
+  'Antique Jewelry',
+  'Cultural Artifacts',
+  'Wall Decor & Frames',
+  'Old Coins & Stamps',
 ];
 
 

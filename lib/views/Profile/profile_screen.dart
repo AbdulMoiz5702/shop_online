@@ -3,7 +3,7 @@ import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/consts/firebase_const.dart';
 import 'package:emart_app/controllers/auth_controller.dart';
 import 'package:emart_app/views/auth_screens/login_screen.dart';
-import 'package:emart_app/views/messages/my_messages_screen.dart';
+import 'package:emart_app/views/chat_screens/chat_screen.dart';
 import 'package:emart_app/views/wishList/wiskList_screen.dart';
 import 'package:emart_app/widgets_common/CustomSized.dart';
 import 'package:emart_app/widgets_common/bg_widgets.dart';
@@ -11,7 +11,6 @@ import 'package:emart_app/widgets_common/text_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../services/firse_store_services.dart';
 import '../../widgets_common/profile_shopping_info.dart';
 import '../orders/orders_screen.dart';
@@ -157,7 +156,7 @@ class ProfileScreen extends StatelessWidget {
                                   Get.to(()=> WishList(),transition: Transition.cupertino);
                                   break;
                                 case(2):
-                                  Get.to(()=> MyMessagesScreen(),transition: Transition.cupertino);
+                                  Get.to(()=> ChatScreen(userId: currentUser!.uid),transition: Transition.cupertino);
                                   break;
                               }
                             },

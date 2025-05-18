@@ -1,3 +1,4 @@
+import 'package:emart_app/chat_bot/chat_screen.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controllers/home_controller.dart';
 import 'package:emart_app/views/Cart/cart_screen.dart';
@@ -33,6 +34,17 @@ class Home extends StatelessWidget {
         return false ;
       },
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.to(() => ChatBotScreen());
+          },
+          backgroundColor: Colors.red, // Set the button color to red
+          child: const Icon(
+            Icons.smart_toy, // You can also use Icons.robot if supported
+            color: Colors.white, // Icon color
+          ),
+        ),
+
         body: Obx(()=> screens.elementAt(homeController.currentIndex.value)),
         bottomNavigationBar: Obx(
             ()=> BottomNavigationBar(
