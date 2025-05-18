@@ -18,7 +18,6 @@ import '../../widgets_common/home_button.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(HomeController());
@@ -58,7 +57,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics:const BouncingScrollPhysics(),
         child: Column(
           children: [
             StreamBuilder(stream: FireStoreServices.getAppProducts(), builder: (context,AsyncSnapshot<QuerySnapshot> snapshot){
@@ -87,47 +86,6 @@ class HomeScreen extends StatelessWidget {
                 return  Center(child: smallText(title: 'Something went wrong'));
               }
             }),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(2, (index) {
-                return HomeButton(imagePath: index == 0 ? icTodaysDeal : icFlashDeal, title: index == 0 ? 'Today Deals' : ' Flash Deal');
-              }),
-            ),
-            StreamBuilder(stream: FireStoreServices.getAppProducts(), builder: (context,AsyncSnapshot<QuerySnapshot> snapshot){
-              if(snapshot.connectionState == ConnectionState.waiting){
-                return Center(child: CupertinoActivityIndicator(),);
-              }else if (snapshot.hasData){
-                var data = snapshot.data!.docs;
-                return VxSwiper.builder(
-                    enlargeCenterPage: true,
-                    scrollPhysics: BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    autoPlayCurve: Curves.easeInOutExpo,
-                    autoPlay: true,
-                    aspectRatio: 18/9,
-                    itemCount: data.length, itemBuilder: (context,index){
-                  return Container(
-                    margin: EdgeInsets.all(5),
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(image: NetworkImage(data[index]['p_images'][0]),fit: BoxFit.fill,isAntiAlias: true),
-                    ),
-                  );
-                });
-              }else {
-                return  Center(child: smallText(title: 'Something went wrong'));
-              }
-            }),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(3, (index) {
-                return HomeButton(
-                  width: 0.27,
-                    height: 0.12,
-                    imagePath: index == 0 ? icTopCategories : index == 1 ? icTopSeller:icBrands, title: index == 0 ? 'Categories' : index == 1 ?'Sellers':'Brands');
-              }),
-            ),
             Padding(
               padding: const EdgeInsets.all(8),
               child: Align(
@@ -137,7 +95,7 @@ class HomeScreen extends StatelessWidget {
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
+              physics:const BouncingScrollPhysics(),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: List.generate(3, (index){
@@ -146,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                         FeaturedCategories(title: featuredCategoriesList[index],imagePath: featuredCategoriesImages[index],onTap: (){
                           Get.to(()=> CategoriesDetails(title: featuredCategoriesList[index],),transition: Transition.cupertino);
                         },),
-                        CustomSized(),
+                        const CustomSized(),
                         FeaturedCategories(title: featuredCategoriesList2[index],imagePath: featuredCategoriesImages2[index],onTap: (){
                           Get.to(()=> CategoriesDetails(title: featuredCategoriesList2[index],),transition: Transition.cupertino);
                         },),
@@ -155,7 +113,7 @@ class HomeScreen extends StatelessWidget {
                 })
               ),
             ),
-            CustomSized(),
+            const CustomSized(),
             Container(
           height: MediaQuery.sizeOf(context).height * 0.285,
           width: MediaQuery.sizeOf(context).width * 1,
@@ -163,74 +121,42 @@ class HomeScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             color: redColor,
           ),
-          child: Column(
-            children: [
-              CustomSized(),
-              normalText(title: 'Featured Products'),
-              CustomSized(),
-             StreamBuilder(stream: FireStoreServices.getFeaturedProducts(), builder: (context,AsyncSnapshot<QuerySnapshot> snapshot){
-               if(snapshot.connectionState == ConnectionState.waiting){
-                 return Center(child: CupertinoActivityIndicator(),);
-               }else if (snapshot.hasData){
-                 var data = snapshot.data!.docs;
-               return SingleChildScrollView(
-                   physics: const BouncingScrollPhysics(),
-                   scrollDirection: Axis.horizontal,
-                   child: Row(
-                     children: List.generate(data.length, (index) {
-                       return InkWell(
-                         onTap: (){
-                           Get.to(()=> ItemDetailsScreen(title: data[index]['p_subcategory'], data: data[index]),transition: Transition.cupertino);
-                         },
-                           child: FeaturedProducts(imagePath: data[index]['p_images'][0], title:data[index]['p_name'], price: '${data[index]['p_price']} \$'));
-                     }),
-                   ),
-                 );
-               }else {
-                 return  Center(child: smallText(title: 'Something went wrong'));
-               }
-             })
-            ],
-          ),
+          child: StreamBuilder(stream: FireStoreServices.getFeaturedProducts(), builder: (context,AsyncSnapshot<QuerySnapshot> snapshot){
+            if(snapshot.connectionState == ConnectionState.waiting){
+              return Center(child: CupertinoActivityIndicator(),);
+            }else if (snapshot.data!.docs.isNotEmpty){
+              var data = snapshot.data!.docs;
+                 return SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(data.length, (index) {
+                    return InkWell(
+                      onTap: (){
+                        Get.to(()=> ItemDetailsScreen(title: data[index]['p_subcategory'], data: data[index]),transition: Transition.cupertino);
+                      },
+                        child: FeaturedProducts(imagePath: data[index]['p_images'][0], title:data[index]['p_name'], price: '${data[index]['p_price']} \$'));
+                  }),
+                ),
+              );
+            }else if (snapshot.data!.docs.isEmpty){
+              return  Center(child: smallText(title: 'Currently no feature products',color: whiteColor));
+            }else {
+              return  Center(child: smallText(title: 'Something went wrong',color: whiteColor));
+            }
+          }),
         ),
-            CustomSized(),
+            const CustomSized(),
             StreamBuilder(stream: FireStoreServices.getAppProducts(), builder: (context,AsyncSnapshot<QuerySnapshot> snapshot){
               if(snapshot.connectionState == ConnectionState.waiting){
-                return Center(child: CupertinoActivityIndicator(),);
-              }else if (snapshot.hasData){
-                var data = snapshot.data!.docs;
-                return VxSwiper.builder(
-                    enlargeCenterPage: true,
-                    scrollPhysics: BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    autoPlayCurve: Curves.easeInOutExpo,
-                    autoPlay: true,
-                    aspectRatio: 18/9,
-                    itemCount: data.length, itemBuilder: (context,index){
-                  return Container(
-                    margin: EdgeInsets.all(5),
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(image: NetworkImage(data[index]['p_images'][0]),fit: BoxFit.fill,isAntiAlias: true),
-                    ),
-                  );
-                });
-              }else {
-                return  Center(child: smallText(title: 'Something went wrong'));
-              }
-            }),
-            CustomSized(),
-            StreamBuilder(stream: FireStoreServices.getAppProducts(), builder: (context,AsyncSnapshot<QuerySnapshot> snapshot){
-              if(snapshot.connectionState == ConnectionState.waiting){
-                return Center(child: CupertinoActivityIndicator(),);
+                return const Center(child: CupertinoActivityIndicator(),);
               }else if (snapshot.hasData){
                 var data = snapshot.data!.docs;
                 return GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: data.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 5/7,
                       crossAxisCount: 2,crossAxisSpacing: 5,mainAxisSpacing: 8,
                     ), itemBuilder: (context,index){
@@ -239,7 +165,7 @@ class HomeScreen extends StatelessWidget {
                       Get.to(()=> ItemDetailsScreen(title: data[index]['p_subcategory'], data: data[index]),transition: Transition.cupertino);
                     },
                     child: Card(
-                      margin: EdgeInsets.only(left: 8),
+                      margin:const EdgeInsets.only(left: 8),
                       color: whiteColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -256,9 +182,9 @@ class HomeScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                                 image: DecorationImage(image: NetworkImage(data[index]['p_images'][0]),fit: BoxFit.cover,isAntiAlias: true),
                               ),),
-                            CustomSized(),
+                            const CustomSized(),
                             normalText(title: data[index]['p_name'],color: darkFontGrey),
-                            CustomSized(),
+                            const CustomSized(),
                             normalText(title: '${data[index]['p_price']} \$',color: redColor),
                           ],
                         ),
