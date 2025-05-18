@@ -1,8 +1,6 @@
 import 'package:emart_app/widgets_common/CustomSized.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:image_picker/image_picker.dart';
-
 import '../../consts/colors.dart';
 import '../../controllers/chat_controller.dart';
 
@@ -31,14 +29,14 @@ Widget buildMessageInput(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 2,),
                       child: TextFormField(
-                        style: TextStyle(color: whiteColor,fontSize: 12,fontWeight: FontWeight.w500),
+                        style: TextStyle(color: darkFontGrey,fontSize: 12,fontWeight: FontWeight.w500),
                         cursorColor: whiteColor.withOpacity(0.8),
                         controller: controller.message,
                         decoration: InputDecoration(
                           isDense: true,
                           border: InputBorder.none,
                           hintText: '  Type a message...',
-                          hintStyle: TextStyle(color: whiteColor.withOpacity(0.5),fontSize: 12,fontWeight: FontWeight.w500)
+                          hintStyle: TextStyle(color: redColor.withOpacity(0.5),fontSize: 12,fontWeight: FontWeight.w500)
                         ),
                       ),
                     ),
@@ -93,13 +91,13 @@ Widget buildFirstMessageMessageInput(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2),
                 child: TextFormField(
-                  style: TextStyle(color: whiteColor,fontSize: 12,fontWeight: FontWeight.w500),
+                  style: TextStyle(color: darkFontGrey,fontSize: 12,fontWeight: FontWeight.w500),
                   cursorColor: whiteColor.withOpacity(0.8),
                   controller: controller.message,
                   decoration: InputDecoration(
                     isDense: true,
                     border: InputBorder.none,
-                    hintText: 'Type a message...', hintStyle: TextStyle(color: whiteColor.withOpacity(0.5),fontSize: 12,fontWeight: FontWeight.w500)
+                    hintText: 'Type a message...', hintStyle: TextStyle(color: redColor.withOpacity(0.5),fontSize: 12,fontWeight: FontWeight.w500)
                   ),
                 ),
               ),

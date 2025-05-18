@@ -42,11 +42,12 @@ class ChatScreen extends StatelessWidget {
                     CustomSized(height: 0.005),
                     largeText(
                       title: 'Chats',
-                      color: whiteColor,
+                      color: redColor,
                     ),
                     CustomSized(height: 0.005),
                     smallText(
                       title: 'My all chats.',
+                      color: redColor,
                     ),
                     CustomSized(height: 0.005),
                   ],
@@ -68,7 +69,7 @@ class ChatScreen extends StatelessWidget {
               return const CircularProgressIndicator();
             } else if (snapshot.data!.docs.isEmpty) {
               return Center(
-                child: normalText(title: 'No Chats yet'),
+                child: normalText(title: 'No Chats yet',color: redColor,),
               );
             } else if (snapshot.hasData) {
               return ListView.builder(
@@ -96,9 +97,9 @@ class ChatScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: ListTile(
-                            trailing: Icon(Icons.arrow_forward_ios,color: whiteColor.withOpacity(0.5),size: 15,),
-                            leading: const  Icon(Icons.person,color: whiteColor,),
-                            title: normalText(title: toTitleCase(receiverName),color: whiteColor),
+                            trailing: Icon(Icons.arrow_forward_ios,color: redColor.withOpacity(0.5),size: 15,),
+                            leading: const  Icon(Icons.person,color: redColor,),
+                            title: normalText(title: toTitleCase(receiverName),color: redColor),
                             onTap: () {
                               Get.to(()=> MessageScreen(receiverId: receiverId, receiverName: receiverName,userId: userId));
                             },
@@ -115,7 +116,7 @@ class ChatScreen extends StatelessWidget {
               );
             } else {
               return Center(
-                child: normalText(title: 'Please check internet'),
+                child: normalText(title: 'Please check internet',color: redColor),
               );
             }
           },

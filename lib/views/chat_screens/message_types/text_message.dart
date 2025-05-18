@@ -103,11 +103,11 @@ class TextMessageWidget extends StatelessWidget {
 
 Widget buildMessageIndicator(dynamic messageData) {
   if (messageData['isSent'] == true && messageData['isDelivered'] == false) {
-    return Icon(Icons.check, size: 12, color: redColor);
+    return Icon(Icons.check, size: 12, color: whiteColor);
   } else if ( messageData['isDelivered'] == true && messageData['status'] == true) {
-    return Icon(Icons.done_all_outlined, size: 12, color: redColor);
+    return Icon(Icons.done_all_outlined, size: 12, color: whiteColor);
   } else if (messageData['isDelivered'] == true) {
-    return Icon(Icons.done_all_outlined, size: 12, color:redColor );
+    return Icon(Icons.done_all_outlined, size: 12, color:whiteColor );
   }else {
     return Icon(Icons.access_time, size: 8, color: Colors.grey); // Message is pending
   }
