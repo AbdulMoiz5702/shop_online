@@ -1,8 +1,8 @@
 import 'package:emart_app/consts/consts.dart';
 
-const appname = "eMart";
+const appname = "Crafted Marketplace";
 const appversion = "Version 1.0.0";
-const credits = "@FalconBytes Solutions";
+const credits = "@CraftedMarketplace";
 
 
 List<String>  socialIconList = [

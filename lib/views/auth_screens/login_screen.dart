@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                 child: Image.asset(icAppLogo,fit: BoxFit.cover,alignment: Alignment.center,),
               ),
               CustomSized(),
-              normalText(title: 'Login to eMart'),
+              normalText(title: 'Login to Crafted Marketplace'),
               CustomSized(height: 0.05,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -82,23 +82,6 @@ class LoginScreen extends StatelessWidget {
                         CustomButton(onTap: (){
                           Get.to(()=> SignupScreen(),transition: Transition.cupertino);
                         }, title: 'Signup',color: golden,),
-                        CustomSized(),
-                        Align(
-                            alignment: Alignment.center,
-                            child: smallText(title: 'Login with',color: darkFontGrey)),
-                        CustomSized(height: 0.03,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children:List.generate(socialIconList.length, (index){
-                            return Container(
-                              margin: EdgeInsets.only(left:15),
-                              child: CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                backgroundImage:AssetImage(socialIconList[index],),
-                              ),
-                            );
-                        }),
-                        ),
                         CustomSized(),
                       ],
                     ),
