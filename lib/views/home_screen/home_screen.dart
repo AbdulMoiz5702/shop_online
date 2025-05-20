@@ -135,7 +135,7 @@ class HomeScreen extends StatelessWidget {
                       onTap: (){
                         Get.to(()=> ItemDetailsScreen(title: data[index]['p_subcategory'], data: data[index]),transition: Transition.cupertino);
                       },
-                        child: FeaturedProducts(imagePath: data[index]['p_images'][0], title:data[index]['p_name'], price: '${data[index]['p_price']} \$'));
+                        child: FeaturedProducts(height:0.25,width:0.45,imagePath: data[index]['p_images'][0], title:data[index]['p_name'], price: '${data[index]['p_price']} \$'));
                   }),
                 ),
               );
@@ -157,7 +157,7 @@ class HomeScreen extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: data.length,
                     gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 5/7,
+                      childAspectRatio: 5/8,
                       crossAxisCount: 2,crossAxisSpacing: 5,mainAxisSpacing: 8,
                     ), itemBuilder: (context,index){
                   return InkWell(

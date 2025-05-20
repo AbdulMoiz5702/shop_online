@@ -68,29 +68,6 @@ class WishList extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 normalText(title: 'Price : ${data[index]['p_price']}',color: darkFontGrey,),
-                                Row(
-                                  children: [
-                                    smallText(
-                                        title: 'color :  ',
-                                        color: darkFontGrey
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: List.generate(
-                                          data[index]['p_colors'].length, (index1){
-                                        return Container(
-                                          margin: EdgeInsets.all(4),
-                                          height: 20,
-                                          width: 20,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-                                            color: Color(int.parse(data[index]['p_colors'][index1])),
-                                          ),
-                                        );
-                                      }),
-                                    )
-                                  ],
-                                )
                               ],
                             ),
                           ),

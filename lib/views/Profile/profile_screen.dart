@@ -77,37 +77,38 @@ class ProfileScreen extends StatelessWidget {
                               children: [
                                 normalText(title: data['name'] ?? 'N/A'),
                                 smallText(title: data['email'] ?? 'N/A'),
+                                CustomSized(),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    IconButton(onPressed: (){
+                                      Get.to(()=> EditProfileScreen(
+                                        imageUrl: data['imageUrl'], email: data['email'],password: data['password'],
+                                      ),transition: Transition.cupertino);
+                                    }, icon: Icon(Icons.edit,color: whiteColor,)),
+                                    InkWell(
+                                      onTap: ()async{
+                                        await authController.logout(context: context).then((value){
+                                          VxToast.show(context, msg: 'Logout successfully');
+                                          Get.offAll(()=> LoginScreen(),transition: Transition.cupertino);
+                                        });
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        padding: EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(8),
+                                            border: Border.all(color: whiteColor)
+                                        ),
+                                        child: smallText(color: whiteColor,title: 'Logout'),
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
                           ],
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            IconButton(onPressed: (){
-                              Get.to(()=> EditProfileScreen(
-                                imageUrl: data['imageUrl'], email: data['email'],password: data['password'],
-                              ),transition: Transition.cupertino);
-                            }, icon: Icon(Icons.edit,color: whiteColor,)),
-                            InkWell(
-                              onTap: ()async{
-                                await authController.logout(context: context).then((value){
-                                  VxToast.show(context, msg: 'Login successfully');
-                                  Get.offAll(()=> LoginScreen(),transition: Transition.cupertino);
-                                });
-                              },
-                              child: Container(
-                                alignment: Alignment.center,
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(color: whiteColor)
-                                ),
-                                child: smallText(color: whiteColor,title: 'Logout'),
-                              ),
-                            ),
-                          ],
-                        )
                       ],
                     ),
                   ),

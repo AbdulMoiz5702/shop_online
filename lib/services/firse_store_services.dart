@@ -56,7 +56,7 @@ class FireStoreServices {
   }
 
   static getFeaturedProducts(){
-    return fireStore.collection(productsCollections).where('is_featured',isEqualTo: 'true').snapshots();
+    return fireStore.collection(productsCollections).where('id_featured',isEqualTo: 'true').snapshots();
   }
 
   static getSearchProducts(name){

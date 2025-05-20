@@ -34,6 +34,8 @@ class SearchScreen extends StatelessWidget {
             var data = snapshot.data!.docs ;
             var filerProducts = data.where((element) => element['p_name'].toString().toLowerCase().contains(search.toString().toLowerCase())).toList();
             return ListView.builder(
+              physics:const BouncingScrollPhysics(),
+              padding: const EdgeInsets.all(2),
               itemCount: filerProducts.length,
                 itemBuilder: (context,index){
                 return InkWell(
@@ -41,7 +43,7 @@ class SearchScreen extends StatelessWidget {
                     Get.to(()=> ItemDetailsScreen(title: filerProducts[index]['p_subcategory'], data: filerProducts[index]),transition: Transition.cupertino);
                   },
                   child: Card(
-                    margin: EdgeInsets.only(left: 8),
+                    margin: EdgeInsets.all(4),
                     color: whiteColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -49,18 +51,17 @@ class SearchScreen extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.all(5),
                       alignment: Alignment.center,
-                      height: MediaQuery.sizeOf(context).height * 0.22,
+                      height: MediaQuery.sizeOf(context).height * 0.25,
                       width: MediaQuery.sizeOf(context).width * 1,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CustomSized(),
                               Container(
-                                height:MediaQuery.sizeOf(context).height * 0.13,width:MediaQuery.sizeOf(context).width * 0.35,
+                                height:MediaQuery.sizeOf(context).height * 0.16,width:MediaQuery.sizeOf(context).width * 0.4,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(image: NetworkImage(filerProducts[index]['p_images'][0]),fit: BoxFit.cover,isAntiAlias: true),
@@ -70,33 +71,8 @@ class SearchScreen extends StatelessWidget {
                               smallText(title: '${filerProducts[index]['p_price']} \$',color: darkFontGrey)
                             ],
                           ),
-                          CustomSized(),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              smallText(title: 'Description : ${filerProducts[index]['p_description']}',color: darkFontGrey),
-                              Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: List.generate(
-                                      filerProducts[index]['p_colors'].length,
-                                          (index1) {
-                                         var data1 = filerProducts[index]['p_colors'][index1] ;
-                                        return Container(
-                                          alignment: Alignment.center,
-                                          margin: EdgeInsets.all(2),
-                                          height: 100,
-                                          width: 30,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Color(data1),
-                                          ),
-                                        );
-                                      })),
-                            ],
-                          )
+                          CustomSized(width: 0.05,),
+                          Expanded(child: Text(filerProducts[index]['p_description'],style: const TextStyle(color: darkFontGrey),))
                         ],
                       ),
                     ),

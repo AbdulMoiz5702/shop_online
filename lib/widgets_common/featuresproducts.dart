@@ -22,15 +22,15 @@ class FeaturedProducts extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Container(
+        padding: EdgeInsets.all(4),
         alignment: Alignment.center,
         height: MediaQuery.sizeOf(context).height * height,
         width: MediaQuery.sizeOf(context).width * width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomSized(),
             Container(
-                height:MediaQuery.sizeOf(context).height * 0.13,width:MediaQuery.sizeOf(context).width * 0.35,
+                height:MediaQuery.sizeOf(context).height * 0.15,width:MediaQuery.sizeOf(context).width * 0.4,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(image: NetworkImage(imagePath),fit: BoxFit.cover,isAntiAlias: true),
