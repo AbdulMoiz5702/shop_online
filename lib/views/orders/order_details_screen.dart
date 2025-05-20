@@ -146,22 +146,6 @@ class OrdersDetailsScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                            normalText(title: 'Quantity : ${data['orders'][index]['quantity']}',color: darkFontGrey,),
-                            Row(
-                              children: [
-                                smallText(
-                                    title: 'color :  ',
-                                    color: darkFontGrey
-                                ),
-                                Container(
-                                  height: 20,
-                                  width: 20,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Color(int.parse(data['orders'][index]['color'])),
-                                  ),
-                                )
-                              ],
-                            )
                           ],
                         ),
                       ),

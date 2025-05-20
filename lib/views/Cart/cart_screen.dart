@@ -71,22 +71,6 @@ class CartScreen extends StatelessWidget {
                             children: [
                               normalText(title: 'Price : ${data[index]['totalPrice']}',color: darkFontGrey,),
                               normalText(title: 'Quantity : ${data[index]['quantity']}',color: darkFontGrey,),
-                              Row(
-                                children: [
-                                  smallText(
-                                    title: 'color :  ',
-                                    color: darkFontGrey
-                                  ),
-                                  Container(
-                                    height: 20,
-                                    width: 20,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: Color(int.parse(data[index]['color'])),
-                                    ),
-                                  )
-                                ],
-                              )
                             ],
                           ),
                         ),
