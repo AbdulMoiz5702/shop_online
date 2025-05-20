@@ -129,63 +129,6 @@ class ItemDetailsScreen extends StatelessWidget {
                 )),
             CustomSized(),
             Card(
-              color: whiteColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Container(
-                    padding: EdgeInsets.all(8),
-                    width: MediaQuery.sizeOf(context).width * 1,
-                    height: MediaQuery.sizeOf(context).height * 0.06,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: whiteColor,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        smallText(title: 'Colors', color: textfieldGrey),
-                        CustomSized(),
-                        Obx(
-                          () => Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: List.generate(data['p_colors'].length,
-                                  (index) {
-                                return InkWell(
-                                  onTap: () {
-                                    itemDetailController
-                                        .changeColorIndex(index);
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    margin: EdgeInsets.all(2),
-                                    height: 100,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color(data['p_colors'][index]),
-                                    ),
-                                    child: Visibility(
-                                        visible: index ==
-                                            itemDetailController
-                                                .colorIndex.value,
-                                        child: Icon(
-                                          Icons.done,
-                                          color: Colors.white,
-                                        )),
-                                  ),
-                                );
-                              })),
-                        ),
-                      ],
-                    )),
-              ),
-            ),
-            Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
